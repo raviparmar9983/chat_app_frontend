@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Container, Card, Form, Button } from "react-bootstrap";
-import { useHistory } from 'react-router-dom'
 const SignUp = () => {
     const apiKey = import.meta.env.VITE_API_URL
     const [name, setName] = useState()
@@ -10,21 +9,19 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState()
     const [pic, setPic] = useState()
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
     const submitHandler = async (e) => {
         e.preventDefault();
         setLoading(true)
         if (!name && !email && !password && !confirmPassword) { setLoading(false) }
         else {
             try {
-                const data = await axios.post(`${apiKey}/api/user/signup`, { name, email, password })
+                const data = await axios.post(`${apiKey}/api/auth/signup`, { name, email, password })
                 console.log(data);
                 const user = data.data.data;
                 const token = data.data.token
 
                 localStorage.setItem("User", JSON.stringify(user))
                 localStorage.setItem("token", JSON.stringify(token))
-                history.push('/')
             }
             catch (err) {
                 console.log(err)

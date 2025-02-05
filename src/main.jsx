@@ -28,7 +28,7 @@ const route = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: '/chat',
+        path: '/',
         element: <Chat />
       }
     ]

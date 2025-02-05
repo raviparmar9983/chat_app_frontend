@@ -15,14 +15,14 @@ const Login = () => {
         if (!email && !password) { setLoading(false) }
         else {
             try {
-                const data = await axios.post(`${apiKey}/api/user/login`, { email, password })
+                const data = await axios.post(`${apiKey}/api/auth/login`, { email, password })
                 console.log(data);
                 const user = data.data.data;
                 const token = data.data.token
 
                 localStorage.setItem("User", JSON.stringify(user))
                 localStorage.setItem("token", JSON.stringify(token))
-                navigate('/');  
+                navigate('/');
             }
             catch (err) {
                 console.log(err)
